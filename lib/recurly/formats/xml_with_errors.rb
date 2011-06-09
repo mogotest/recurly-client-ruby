@@ -82,13 +82,11 @@ module Recurly
 
       def xml_node_nil?(node)
         return true if node.nil?
-        attr_node = node.attribute('nil')
-        attr_node.nil? ? false : true
+        node.has_attribute?('nil')
       end
       
       def xml_node_type(node)
-        attr_node = node.attribute('type')
-        attr_node.nil? ? nil : attr_node.value
+        node.has_attribute?('type') ? node.attribute('type').value : nil
       end
       
       def xml_attributes(node)
